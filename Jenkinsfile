@@ -47,7 +47,7 @@ pipeline{
              docker tag quay.io/kiegroup/kogito-quarkus-jvm-ubi8                   quay.io/kaitou786/kogito-quarkus-jvm-ubi8-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
              docker tag quay.io/kiegroup/kogito-quarkus-ubi8:0.8.0-rc1             quay.io/kaitou786/kogito-quarkus-ubi8-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
              docker tag quay.io/kiegroup/kogito-quarkus-ubi8                       quay.io/kaitou786/kogito-quarkus-ubi8-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
-          
+             docker images
              """
        }
   }
