@@ -28,14 +28,28 @@ pipeline{
            """
        }
    }
+
  stage('Pushing'){
       steps{
           sh """
              docker images
+             docker tag quay.io/kiegroup/kogito-jobs-service:0.8.0-rc1             quay.io/kaitou786/kogito-jobs-service-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-jobs-service                       quay.io/kaitou786/kogito-jobs-service-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-data-index:0.8.0-rc1               quay.io/kaitou786/kogito-data-index-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-data-index                         quay.io/kaitou786/kogito-data-index-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-springboot-ubi8-s2i:0.8.0-rc1      quay.io/kaitou786/kogito-springboot-ubi8-s2i-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-springboot-ubi8-s2i                quay.io/kaitou786/kogito-springboot-ubi8-s2i-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-springboot-ubi8:0.8.0-rc1          quay.io/kaitou786/kogito-springboot-ubi8-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-springboot-ubi8                    quay.io/kaitou786/kogito-springboot-ubi8-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-quarkus-ubi8-s2i:0.8.0-rc1         quay.io/kaitou786/kogito-quarkus-ubi8-s2i-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-quarkus-ubi8-s2i                   quay.io/kaitou786/kogito-quarkus-ubi8-s2i-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-quarkus-jvm-ubi8:0.8.0-rc1         quay.io/kaitou786/kogito-quarkus-jvm-ubi8-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-quarkus-jvm-ubi8                   quay.io/kaitou786/kogito-quarkus-jvm-ubi8-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-quarkus-ubi8:0.8.0-rc1             quay.io/kaitou786/kogito-quarkus-ubi8-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+             docker tag quay.io/kiegroup/kogito-quarkus-ubi8                       quay.io/kaitou786/kogito-quarkus-ubi8-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
+          
              """
        }
-
-
   }
    stage('Finishing'){
        steps{
