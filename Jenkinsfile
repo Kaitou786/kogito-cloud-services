@@ -4,7 +4,6 @@ pipeline{
      stage('Clone Sources'){
          steps{
          sh """
-         docker rmi -f \$(docker images -q)
          rm -rf /root/kogito-cloud/
          mkdir -p /root/kogito-cloud
          git clone https://github.com/kiegroup/kogito-cloud.git  /root/kogito-cloud
@@ -77,6 +76,7 @@ pipeline{
        steps{
            sh"""
            rm -rf /root/kogito-cloud
+           docker rmi -f \$(docker images -q) || date
            """
        }
    }
