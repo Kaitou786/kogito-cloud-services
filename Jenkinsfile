@@ -15,7 +15,7 @@ pipeline{
            withDockerRegistry([ credentialsId: "tarkhand-rregistry", url: "https://registry.redhat.io" ]){
                sh """ 
                export MAVEN_MIRROR_URL=http://nexus3-kogito-tools.apps.kogito.automation.rhmw.io/repository/maven-public/
-               cd /root/kogito-cloud/s2i && make build
+               #cd /root/kogito-cloud/s2i && make build
                """
            }
        }
@@ -24,12 +24,12 @@ pipeline{
        steps{
            sh """
            export MAVEN_MIRROR_URL=http://nexus3-kogito-tools.apps.kogito.automation.rhmw.io/repository/maven-public/
-           cd /root/kogito-cloud/s2i && make test
+           #cd /root/kogito-cloud/s2i && make test
            """
        }
    }
 
- stage('Pushing'){
+ stage('Tagging'){
       steps{
           sh """
              docker images
