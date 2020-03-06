@@ -27,6 +27,15 @@ pipeline{
            """
        }
    }
+ stage('Pushing'){
+      stepes{
+          sh """
+             docker images
+             """
+       }
+
+
+  }
    stage('Finishing'){
        steps{
            sh"""
