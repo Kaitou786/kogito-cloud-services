@@ -28,7 +28,7 @@ pipeline{
        }
    }
  stage('Pushing'){
-      stepes{
+      steps{
           sh """
              docker images
              """
