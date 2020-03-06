@@ -51,6 +51,7 @@ pipeline{
        }
   }
   stage('Pushing'){
+   steps{
    withDockerRegistry([ credentialsId: "tarun_quay", url: "https://quay.io" ]){
     sh """
     docker push  quay.io/kaitou786/kogito-jobs-service-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
@@ -68,6 +69,7 @@ pipeline{
     docker push  quay.io/kaitou786/kogito-quarkus-ubi8-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
     docker push  quay.io/kaitou786/kogito-quarkus-ubi8-nightly:nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
     """
+   }
    }  
   }
    stage('Finishing'){
