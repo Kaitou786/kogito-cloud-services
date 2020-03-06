@@ -4,6 +4,7 @@ pipeline{
      stage('Clone Sources'){
          steps{
          sh """
+         rm -rf /root/kogito-cloud/
          mkdir -p /root/kogito-cloud
          git clone https://github.com/kiegroup/kogito-cloud.git  /root/kogito-cloud
          """
@@ -27,8 +28,8 @@ pipeline{
            """
        }
    }
- stage('Tagging'){
-      stepes{
+ stage('Pushing'){
+      steps{
           sh """
              docker images
              docker tag quay.io/kiegroup/kogito-jobs-service:0.8.0-rc1             quay.io/kaitou786/kogito-jobs-service-nightly:0.8.0-rc1-nightly-\$(echo \${GIT_COMMIT} | cut -c1-7)
