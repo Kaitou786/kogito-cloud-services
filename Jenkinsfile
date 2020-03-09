@@ -1,12 +1,18 @@
 pipeline{
  agent { label 'myagent'}
  stages{
-     stage('Clone Sources'){
-         steps{
-         sh """
+  stage('Initializing'){
+     steps{
+     sh """
          docker rmi -f \$(docker images -q) || date
          rm -rf /root/kogito-cloud/
          mkdir -p /root/kogito-cloud
+   """
+   }
+  }
+     stage('Clone Sources'){
+         steps{
+         sh """
          git clone https://github.com/kiegroup/kogito-cloud.git  /root/kogito-cloud
          """
         }
