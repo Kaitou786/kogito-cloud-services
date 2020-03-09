@@ -14,17 +14,7 @@ pipeline{
          steps{
          sh """
          git clone https://github.com/kiegroup/kogito-cloud.git  /root/kogito-cloud
-         echo '''schema_version: 1
-name: org.kie.kogito.dataindex
-version: "0.8.0-rc1"
-
-artifacts:
-- name: kogito-data-index-runner.jar
-  url: https://repository.jboss.org/org/kie/kogito/data-index-service/8.0.0-SNAPSHOT/data-index-service-8.0.0-20200306.141550-176-runner.jar
-  md5: 08c2ab7adf2a58d45864a0abe6de1388
-
-execute:
-- script: configure''' >  /root/kogito-cloud/s2i/modules/kogito-data-index/module.yaml
+         python /root/python-scripts/update-data-service-index-url
 
 echo '''schema_version: 1
 name: org.kie.kogito.jobs.service
