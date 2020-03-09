@@ -33,7 +33,7 @@ version: "0.8.0-rc1"
 artifacts:
 - name: kogito-jobs-service-runner.jar
   url: https://repository.jboss.org/org/kie/kogito/jobs-service/8.0.0-SNAPSHOT/jobs-service-8.0.0-20200306.141121-100-runner.jar
-  md5: 834e6d4148e60c411db45112d844c7dc                                   > /                                                                   
+  md5: 8c3adae62aafd09f078b084db956a4cc                                   > /                                                                   
                                        
 execute:
 - script: configure''' > /root/kogito-cloud/s2i/modules/kogito-jobs-service/module.yaml
