@@ -15,19 +15,7 @@ pipeline{
          sh """
          git clone https://github.com/kiegroup/kogito-cloud.git  /root/kogito-cloud
          python /root/python-scripts/update-data-service-index-url
-
-echo '''schema_version: 1
-name: org.kie.kogito.jobs.service
-version: "0.8.0-rc1"
-                    
-artifacts:
-- name: kogito-jobs-service-runner.jar
-  url: https://repository.jboss.org/org/kie/kogito/jobs-service/8.0.0-SNAPSHOT/jobs-service-8.0.0-20200306.141121-100-runner.jar
-  md5: 8c3adae62aafd09f078b084db956a4cc                                                               
-                                       
-execute:
-- script: configure''' > /root/kogito-cloud/s2i/modules/kogito-jobs-service/module.yaml
-
+         python /root/python-scripts/update_jobs_service_url
          """
         }
     }
