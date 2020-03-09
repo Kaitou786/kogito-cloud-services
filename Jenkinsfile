@@ -14,6 +14,30 @@ pipeline{
          steps{
          sh """
          git clone https://github.com/kiegroup/kogito-cloud.git  /root/kogito-cloud
+         echo '''schema_version: 1
+name: org.kie.kogito.dataindex
+version: "0.8.0-rc1"
+
+artifacts:
+- name: kogito-data-index-runner.jar
+  url: https://repository.jboss.org/org/kie/kogito/data-index-service/8.0.0-SNAPSHOT/data-index-service-8.0.0-20200306.141550-176-runner.jar
+  md5: 08c2ab7adf2a58d45864a0abe6de1388
+
+execute:
+- script: configure''' >  /root/kogito-cloud/s2i/modules/kogito-data-index/module.yaml
+
+echo '''schema_version: 1
+name: org.kie.kogito.jobs.service
+version: "0.8.0-rc1"
+                    
+artifacts:
+- name: kogito-jobs-service-runner.jar
+  url: https://repository.jboss.org/org/kie/kogito/jobs-service/8.0.0-SNAPSHOT/jobs-service-8.0.0-20200306.141121-100-runner.jar
+  md5: 834e6d4148e60c411db45112d844c7dc                                   > /                                                                   
+                                       
+execute:
+- script: configure''' > /root/kogito-cloud/s2i/modules/kogito-jobs-service/module.yaml
+
          """
         }
     }
