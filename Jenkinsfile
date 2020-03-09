@@ -14,11 +14,17 @@ pipeline{
          steps{
          sh """
          git clone https://github.com/kiegroup/kogito-cloud.git  /root/kogito-cloud
-         python /root/python-scripts/update-data-service-index-url
-         python /root/python-scripts/update_jobs_service_url
          """
         }
     }
+  stage('Update Maven Artifacts'){
+   steps{
+   sh """
+   python /root/python-scripts/update-data-service-index-url
+   python /root/python-scripts/update_jobs_service_url
+   """
+   }
+  }
    stage('Build'){
        steps{
            withDockerRegistry([ credentialsId: "tarkhand-rregistry", url: "https://registry.redhat.io" ]){
