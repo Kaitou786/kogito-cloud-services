@@ -4,7 +4,8 @@ pipeline{
   stage('Initializing'){
      steps{
      sh """
-         echo $ghprbSourceBranch
+         pwd
+         ls -l
          export PATH=/usr/local/bin/:$PATH
          docker rmi -f \$(docker images -q) || date
          rm -rf /root/kogito-cloud/
