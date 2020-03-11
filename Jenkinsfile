@@ -5,7 +5,6 @@ pipeline{
      steps{
      sh """
          echo $ghprbSourceBranch
-         echo $sha1
          export PATH=/usr/local/bin/:$PATH
          docker rmi -f \$(docker images -q) || date
          rm -rf /root/kogito-cloud/
