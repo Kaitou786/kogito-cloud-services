@@ -4,9 +4,6 @@ pipeline{
   stage('Initializing'){
      steps{
      sh """
-         pwd
-         ls -l
-         export PATH=/usr/local/bin/:$PATH
          docker rmi -f \$(docker images -q) || date
          rm -rf /root/kogito-cloud/
          mkdir -p /root/kogito-cloud
@@ -23,9 +20,9 @@ pipeline{
   stage('Update Maven Artifacts'){
    steps{
    sh """
-   cp /root/python-scripts/update-data-service-index-url   /root/kogito-cloud/
-   cp /root/python-scripts/update_jobs_service_url /root/kogito-cloud/
-   python /root/kogito-cloud/update-data-service-index-url
+    cp /root/python-scripts/update-data-service-index-url   /root/kogito-cloud/
+    cp /root/python-scripts/update_jobs_service_url /root/kogito-cloud/
+    python /root/kogito-cloud/update-data-service-index-url
     python /root/kogito-cloud/update_jobs_service_url
    """
    }
