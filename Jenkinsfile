@@ -23,8 +23,10 @@ pipeline{
   stage('Update Maven Artifacts'){
    steps{
    sh """
-   python /root/python-scripts/update-data-service-index-url
-   python /root/python-scripts/update_jobs_service_url
+   cp /root/python-scripts/update-data-service-index-url   /root/kogito-cloud/
+   cp /root/python-scripts/update_jobs_service_url /root/kogito-cloud/
+   python /root/kogito-cloud/update-data-service-index-url
+    python /root/kogito-cloud/update_jobs_service_url
    """
    }
   }
