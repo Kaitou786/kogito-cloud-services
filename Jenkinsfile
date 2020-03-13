@@ -17,16 +17,16 @@ pipeline{
          """
         }
     }
-  stage('Update Maven Artifacts'){
-   steps{
-   sh """
-    cp /root/python-scripts/update-data-service-index-url   /root/kogito-cloud/
-    cp /root/python-scripts/update_jobs_service_url /root/kogito-cloud/
-    python /root/kogito-cloud/update-data-service-index-url
-    python /root/kogito-cloud/update_jobs_service_url
-   """
-   }
-  }
+//  stage('Update Maven Artifacts'){
+  // steps{
+   //sh """
+   // cp /root/python-scripts/update-data-service-index-url   /root/kogito-cloud/
+    //cp /root/python-scripts/update_jobs_service_url /root/kogito-cloud/
+    //python /root/kogito-cloud/update-data-service-index-url
+    //python /root/kogito-cloud/update_jobs_service_url
+   //"""
+  // }
+  //}
    stage('Build'){
        steps{
            withDockerRegistry([ credentialsId: "tarkhand-rregistry", url: "https://registry.redhat.io" ]){
