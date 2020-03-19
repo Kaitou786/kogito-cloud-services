@@ -1,5 +1,8 @@
 pipeline{
  agent { label 'myagent'}
+environment{
+   MAVEN_MIRROR_URL="http://nexus3-kogito-tools.apps.kogito.automation.rhmw.io/repository/maven-public/"
+  }
  stages{
   stage('Initializing'){
      steps{
@@ -17,22 +20,12 @@ pipeline{
          """
         }
     }
-//  stage('Update Maven Artifacts'){
-  // steps{
-   //sh """
-   // cp /root/python-scripts/update-data-service-index-url   /root/kogito-cloud/
-    //cp /root/python-scripts/update_jobs_service_url /root/kogito-cloud/
-    //python /root/kogito-cloud/update-data-service-index-url
-    //python /root/kogito-cloud/update_jobs_service_url
-   //"""
-  // }
-  //}
    stage('Build'){
        steps{
            withDockerRegistry([ credentialsId: "tarkhand-rregistry", url: "https://registry.redhat.io" ]){
                sh """ 
                export MAVEN_MIRROR_URL=http://nexus3-kogito-tools.apps.kogito.automation.rhmw.io/repository/maven-public/
-               cd /root/kogito-cloud/s2i && make build
+               cd /root/kogito-cloud/ && make build
                """
            }
        }
@@ -41,7 +34,7 @@ pipeline{
        steps{
            sh """
            export MAVEN_MIRROR_URL=http://nexus3-kogito-tools.apps.kogito.automation.rhmw.io/repository/maven-public/
-           cd /root/kogito-cloud/s2i && make test
+           cd /root/kogito-cloud/ && make test
            """
        }
    }
